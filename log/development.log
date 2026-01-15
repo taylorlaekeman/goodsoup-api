@@ -250,3 +250,72 @@ Migrating to CreateRecipeShoppingList (20260115225546)
   [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
   [1m[36mShoppingList Load (0.4ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
   [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipes_shopping_lists" ON "recipes"."id" = "recipes_shopping_lists"."recipe_id" WHERE "recipes_shopping_lists"."shopping_list_id" = 1 /* loading for pp */ LIMIT 11 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Migrating to CreateIngredientShoppingList (20260115232818)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ingredients_shopping_lists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "ingredient_id" integer, "recipe_id" integer) /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_shopping_lists_on_ingredient_id" ON "ingredients_shopping_lists" ("ingredient_id") /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_shopping_lists_on_recipe_id" ON "ingredients_shopping_lists" ("recipe_id") /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260115232818') RETURNING "version" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList Load (2.3ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList Load (0.2ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_shopping_lists" ON "ingredients"."id" = "ingredients_shopping_lists"."ingredient_id" WHERE "ingredients_shopping_lists"."shopping_list_id" = 1 /* loading for pp */ LIMIT 11 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_shopping_lists" ON "ingredients"."id" = "ingredients_shopping_lists"."ingredient_id" WHERE "ingredients_shopping_lists"."shopping_list_id" = 1 /* loading for inspect */ LIMIT 11 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Reverting CreateIngredientShoppingList (20260115232818)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "ingredients_shopping_lists" /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20260115232818' /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Migrating to CreateIngredientShoppingList (20260115232818)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ingredients_shopping_lists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "ingredient_id" integer, "shopping_list_id" integer) /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_shopping_lists_on_ingredient_id" ON "ingredients_shopping_lists" ("ingredient_id") /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_shopping_lists_on_shopping_list_id" ON "ingredients_shopping_lists" ("shopping_list_id") /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260115232818') RETURNING "version" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList Load (1.1ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_shopping_lists" ON "ingredients"."id" = "ingredients_shopping_lists"."ingredient_id" WHERE "ingredients_shopping_lists"."shopping_list_id" = 1 /* loading for pp */ LIMIT 11 /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList Load (0.3ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.5ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_shopping_lists" ON "ingredients"."id" = "ingredients_shopping_lists"."ingredient_id" WHERE "ingredients_shopping_lists"."shopping_list_id" = 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Reverting CreateIngredientShoppingList (20260115232818)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "ingredients_shopping_lists" /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20260115232818' /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Migrating to CreateIngredientShoppingList (20260115232818)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ingredients_shopping_lists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "ingredient_id" integer, "shopping_list_id" integer) /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_shopping_lists_on_ingredient_id" ON "ingredients_shopping_lists" ("ingredient_id") /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_shopping_lists_on_shopping_list_id" ON "ingredients_shopping_lists" ("shopping_list_id") /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260115232818') RETURNING "version" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList Load (0.1ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_shopping_lists" ON "ingredients"."id" = "ingredients_shopping_lists"."ingredient_id" WHERE "ingredients_shopping_lists"."shopping_list_id" = 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList::HABTM_Ingredients Create (0.0ms)[0m  [1m[32mINSERT INTO "ingredients_shopping_lists" ("ingredient_id", "shopping_list_id") VALUES (1, 1) RETURNING "id" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mShoppingList Load (0.4ms)[0m  [1m[34mSELECT "shopping_lists".* FROM "shopping_lists" ORDER BY "shopping_lists"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_shopping_lists" ON "ingredients"."id" = "ingredients_shopping_lists"."ingredient_id" WHERE "ingredients_shopping_lists"."shopping_list_id" = 1 /* loading for pp */ LIMIT 11 /*application='GoodsoupApi'*/[0m

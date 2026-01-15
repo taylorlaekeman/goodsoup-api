@@ -24,3 +24,64 @@ Migrating to CreateShoppingLists (20260115031316)
   [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260115031316') RETURNING "version" /*application='GoodsoupApi'*/[0m
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Migrating to CreateIngredientRecipe (20260115222436)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ingredients_recipes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "ingredients_id" integer, "recipes_id" integer) /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_recipes_on_ingredients_id" ON "ingredients_recipes" ("ingredients_id") /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_recipes_on_recipes_id" ON "ingredients_recipes" ("recipes_id") /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260115222436') RETURNING "version" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Create (0.4ms)[0m  [1m[32mINSERT INTO "ingredients" ("name", "created_at", "updated_at") VALUES ('test', '2026-01-15 22:28:22.134169', '2026-01-15 22:28:22.134169') RETURNING "id" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "created_at", "updated_at") VALUES ('test', '2026-01-15 22:29:37.989792', '2026-01-15 22:29:37.989792') RETURNING "id" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" ORDER BY "recipes"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" ORDER BY "recipes"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "ingredients_recipes" ON "recipes"."id" = "ingredients_recipes"."recipe_id" WHERE "ingredients_recipes"."ingredient_id" = 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.5ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" ORDER BY "recipes"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "ingredients_recipes" ON "recipes"."id" = "ingredients_recipes"."recipe_id" WHERE "ingredients_recipes"."ingredient_id" = 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Reverting CreateIngredientRecipe (20260115222436)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "ingredients_recipes" /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20260115222436' /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+Migrating to CreateIngredientRecipe (20260115222436)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ingredients_recipes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "ingredient_id" integer, "recipe_id" integer) /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_recipes_on_ingredient_id" ON "ingredients_recipes" ("ingredient_id") /*application='GoodsoupApi'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_ingredients_recipes_on_recipe_id" ON "ingredients_recipes" ("recipe_id") /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260115222436') RETURNING "version" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" ORDER BY "recipes"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "ingredients_recipes" ON "recipes"."id" = "ingredients_recipes"."recipe_id" WHERE "ingredients_recipes"."ingredient_id" = 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient::HABTM_Recipes Create (0.1ms)[0m  [1m[32mINSERT INTO "ingredients_recipes" ("ingredient_id", "recipe_id") VALUES (1, 1) RETURNING "id" /*application='GoodsoupApi'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "ingredients_recipes" ON "recipes"."id" = "ingredients_recipes"."recipe_id" WHERE "ingredients_recipes"."ingredient_id" = 1 /* loading for pp */ LIMIT 11 /*application='GoodsoupApi'*/[0m
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" ORDER BY "recipes"."id" ASC LIMIT 1 /*application='GoodsoupApi'*/[0m
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "ingredients_recipes" ON "ingredients"."id" = "ingredients_recipes"."ingredient_id" WHERE "ingredients_recipes"."recipe_id" = 1 /* loading for pp */ LIMIT 11 /*application='GoodsoupApi'*/[0m

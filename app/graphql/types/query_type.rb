@@ -18,9 +18,24 @@ module Types
       ids.map { |id| context.schema.object_from_id(id, context) }
     end
 
-    field :shopping_lists, [ShoppingListType], null: true
+    field :shopping_lists, [ShoppingListType], null: false
     def shopping_lists
       ShoppingList.last(10)
+    end
+
+    field :sections, [SectionType], null: false
+    def sections
+      Section.all
+    end
+
+    field :ingredients, [IngredientType], null: false
+    def ingredients
+      Ingredient.all
+    end
+
+    field :recipes, [RecipeType], null: false
+    def recipes
+      Recipe.all
     end
   end
 end

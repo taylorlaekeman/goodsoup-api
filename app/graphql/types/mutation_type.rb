@@ -77,5 +77,14 @@ module Types
       shopping_list.update!(name: name, recipe_ids: recipes, ingredient_ids: ingredients)
       shopping_list
     end
+
+    field :delete_shopping_list, ShoppingListType, null: false do
+      argument :id, ID, required: true
+    end
+    def delete_shopping_list(id:)
+      shopping_list = ShoppingList.find(id)
+      shopping_list.destroy!
+      shopping_list
+    end
   end
 end

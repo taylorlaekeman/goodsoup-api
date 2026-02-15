@@ -20,7 +20,7 @@ module Types
 
     field :shopping_lists, [ShoppingListType], null: false
     def shopping_lists
-      ShoppingList.last(10)
+      ShoppingList.all
     end
 
     field :sections, [SectionType], null: false

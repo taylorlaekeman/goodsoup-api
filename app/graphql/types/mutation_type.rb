@@ -13,9 +13,10 @@ module Types
       argument :id, ID, required: true
       argument :name, String, required: true
     end
-    def update_section(id:, name:)
+    def update_section(id:, name: nil)
       section = Section.find(id)
-      section.update!(name: name)
+      input = { name: name }.compact
+      section.update!(input)
       section
     end
 
@@ -32,9 +33,10 @@ module Types
       argument :name, String, required: true
       argument :section, ID, required: true
     end
-    def update_ingredient(id:, name:, section:)
+    def update_ingredient(id:, name: nil, section: nil)
       ingredient = Ingredient.find(id)
-      ingredient.update!(name: name, section_id: section)
+      input = { name: name, section_id: section }.compact
+      ingredient.update!(input)
       ingredient
     end
 
@@ -51,9 +53,10 @@ module Types
       argument :name, String, required: true
       argument :ingredients, [ID], required: true
     end
-    def update_recipe(id:, name:, ingredients:)
+    def update_recipe(id:, name: nil, ingredients: nil)
       recipe = Recipe.find(id)
-      recipe.update!(name: name, ingredient_ids: ingredients)
+      input = { name: name, ingredient_ids: ingredient }.compact
+      recipe.update!(input)
       recipe
     end
 
@@ -67,14 +70,15 @@ module Types
     end
 
     field :update_shopping_list, ShoppingListType, null: false do
-      argument :id, ID, required: false
+      argument :id, ID, required: true
       argument :name, String, required: false
       argument :recipes, [ID], required: false
       argument :ingredients, [ID], required: false
     end
-    def update_shopping_list(id:, name:, recipes:, ingredients:)
+    def update_shopping_list(id:, name: nil, recipes: nil, ingredients: nil)
       shopping_list = ShoppingList.find(id)
-      shopping_list.update!(name: name, recipe_ids: recipes, ingredient_ids: ingredients)
+      input = { name: name, recipe_ids: recipes, ingredient_ids: ingredients }.compact
+      shopping_list.update!(input)
       shopping_list
     end
 

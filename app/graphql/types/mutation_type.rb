@@ -20,6 +20,15 @@ module Types
       section
     end
 
+    field :delete_section, SectionType, null: false do
+      argument :id, ID, required: true
+    end
+    def delete_section(id:)
+      section = Section.find(id)
+      section.destroy
+      section
+    end
+
     field :create_ingredient, IngredientType, null: false do
       argument :name, String, required: true
       argument :section, ID, required: true
@@ -37,6 +46,15 @@ module Types
       ingredient = Ingredient.find(id)
       input = { name: name, section_id: section }.compact
       ingredient.update!(input)
+      ingredient
+    end
+
+    field :delete_ingredient, IngredientType, null: false do
+      argument :id, ID, required: true
+    end
+    def delete_ingredient(id:)
+      ingredient = Ingredient.find(id)
+      ingredient.destroy
       ingredient
     end
 

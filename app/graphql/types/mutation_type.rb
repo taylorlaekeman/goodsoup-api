@@ -78,6 +78,15 @@ module Types
       recipe
     end
 
+    field :delete_recipe, RecipeType, null: false do
+      argument :id, ID, required: true
+    end
+    def delete_recipe(id:)
+      recipe = Recipe.find(id)
+      recipe.destroy
+      recipe
+    end
+
     field :create_shopping_list, ShoppingListType, null: false do
       argument :name, String, required: false
       argument :recipes, [ID], required: false
